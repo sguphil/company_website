@@ -23,17 +23,19 @@ app.set('view engine', 'html');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser("jxchexie"));
+
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser("jxchexie"));
 
 //这里周期只设置为20秒，为了方便测试
 //secret在正式用的时候务必修改
 //express中间件顺序要和下面一致   key: "jxchexie",
 
-app.use(session({//session持久化配置
+//app.set('trust proxy', 1) // trust first proxy
+app.use(session({
   secret: "jxchexie",
-  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//超时时间
-  saveUninitialized: false,
+  cookie: {path:'/', maxAge: 1000 * 60 * 60 * 24 * 30},
+  saveUninitialized: true,
   resave: true,
 }));
 
@@ -71,11 +73,11 @@ app.get('/captcha', function (req, res) {
     background: '#c4c4c5' // background color of the svg image
   });
   //将生成的验证码放在session中
+  console.log( "========0000000==========="+req.session.captcha);
   req.session.captcha = captcha.text;
   
   console.log( "========1111111==========="+req.session.captcha);
   res.set('Content-Type', 'image/svg+xml');
-  res.set('Connection', 'keep-alive');
   res.status(200).send(captcha.data);
 });
 
@@ -84,9 +86,9 @@ require('./routes/index')(app);
 
 /*官网后台做操作是需要，登录验证*/
 app.use(function(req,res,next){
-  console.log( "========1111111req.session.user==========="+req.session.user);
+  console.log( "========app.use(==========="+req.session.captcha);
   // test
-  req.session.user = 'admin'
+  //req.session.user = 'admin'
   if (!req.session.user) {
     if(req.url=="/login"||req.url=="/register"){
       next();//如果请求的地址是登录则通过，进行下一个请求

@@ -254,7 +254,7 @@ exports.checkUser = function(req, res) {
     var username=req.body.username;
     var password=req.body.password;
     var captcha=req.body.captcha;
-
+    console.log('checkUser error:'+ captcha + " ====:" + req.session.captcha);
     if(false == true ){ //(captcha!=req.session.captcha){
         console.log('captcha error');
         res.json({'status':'captcha error'});

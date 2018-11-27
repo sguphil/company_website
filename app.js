@@ -14,8 +14,6 @@ var app = express();
 var mongoose=require('./config/mongoose.js');
 var db=mongoose();
 
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', require('ejs').__express);
@@ -25,7 +23,7 @@ app.set('view engine', 'html');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieParser("jxchexie"));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //这里周期只设置为20秒，为了方便测试
@@ -35,8 +33,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({//session持久化配置
   secret: "jxchexie",
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//超时时间
-  saveUninitialized: true,
-  resave: false,
+  saveUninitialized: false,
+  resave: true,
 }));
 
 
@@ -77,6 +75,7 @@ app.get('/captcha', function (req, res) {
   
   console.log( "========1111111==========="+req.session.captcha);
   res.set('Content-Type', 'image/svg+xml');
+  res.set('Connection', 'keep-alive');
   res.status(200).send(captcha.data);
 });
 
@@ -85,6 +84,9 @@ require('./routes/index')(app);
 
 /*官网后台做操作是需要，登录验证*/
 app.use(function(req,res,next){
+  console.log( "========1111111req.session.user==========="+req.session.user);
+  // test
+  req.session.user = 'admin'
   if (!req.session.user) {
     if(req.url=="/login"||req.url=="/register"){
       next();//如果请求的地址是登录则通过，进行下一个请求

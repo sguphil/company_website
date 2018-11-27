@@ -13,6 +13,10 @@ var Feedback=mongoose.model('Feedback');
 
 // 首页
 exports.admin = function(req, res) {
+    // test 
+    req.session.user.username = 'admin'
+    req.session.user.status = '2'
+    //
     var isSuper='普通管理员'
     if(req.session.user.status==='2'){
         isSuper='超级管理员'
@@ -269,7 +273,7 @@ exports.checkUser = function(req, res) {
             //     console.log('unchecked');
             //     res.json({'status':'unchecked'});
             }else if(doc.password===password){
-                console.log('success');
+                console.log('success======doc=======' + doc);
                 //登录成功，将user保存到session中
                 req.session.user = doc;
                 res.json({'status':'success'});
@@ -294,7 +298,7 @@ exports.post_register = function(req, res) {
     var realname=req.body.realname;
     var phone=req.body.phone;
     var captcha=req.body.captcha;
-    console.log('1111captcha error:'+ captcha + " ====:" + req.session);
+    console.log('1111captcha error:'+ captcha + " ====:" + req.session.captcha);
     if(false == true ){ //captcha!=req.session.captcha){
         console.log('captcha error:'+ captcha + " ====:" + req.session.captcha);
         res.json({'status':'captcha error'});

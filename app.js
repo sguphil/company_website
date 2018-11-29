@@ -9,6 +9,7 @@ var session = require('express-session');
 var ueditor = require("ueditor");
 //图片验证码
 var svgCaptcha = require('svg-captcha');
+var MongoStore = require('connect-mongodb-session')(session);
 
 var app = express();
 var mongoose=require('./config/mongoose.js');
@@ -30,13 +31,17 @@ app.use(cookieParser("jxchexie"));
 //这里周期只设置为20秒，为了方便测试
 //secret在正式用的时候务必修改
 //express中间件顺序要和下面一致   key: "jxchexie",
-
+var store =  new MongoStore({
+  uri: 'mongodb://localhost:27017/connect_mongodb_session',
+  collection: 'mySessions'
+});
 //app.set('trust proxy', 1) // trust first proxy
 app.use(session({
   secret: "jxchexie",
   cookie: {path:'/', maxAge: 1000 * 60 * 60 * 24 * 30},
   saveUninitialized: true,
   resave: true,
+  store: store,
 }));
 
 

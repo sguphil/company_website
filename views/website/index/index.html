@@ -196,22 +196,47 @@
         </div><!--/.container-->    
     </section><!--/#conatcat-info-->
 
+
+
 <%include ../common/include_footer.html%>
 <script type="text/javascript" src="/web/layui/layui.js"></script>
+<!-- 
+＜script language="JavaScript">
+function myrefresh(){
+window.location.reload();
+}
+setTimeout('myrefresh()',1000); //指定1秒刷新一次
+＜/script>
+-->
 
 <!--add for test--> 
 <script type="text/javascript">
-$(function (){
-            getKKK();
-        });
+    $(
+	function(){
+            //self.setInterval(message, 5000);
+            self.setInterval(getKKK, 2000);
+	    //getKKK();
+	}
+      );
+    
+    //send a req to server
+    function getKKK(){
+	//$.get("https://www.ip.cn/", function(result){
+	//	alert(result)
+        $.post("/getKKK", {a:'bbb'});
 
-//send a req to server
-function getKKK(){
-    $.get("/getKKK",function(result){
-        return
-    });
-};
+       // }
+       //)
+    };
+function message() {
+            $.get("https://www.ip.cn/", function (data, status) {
+                alert("数据：" + data + "\n状态：" + status);
+            }).error(function(msg){
+                alert('=======kkkerror==' + JSON.stringify(msg))
+            });
+        };
 </script>
+
 
 <!--jquery修改首页导航样式-->
 <script>

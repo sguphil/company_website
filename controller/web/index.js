@@ -11,6 +11,10 @@ var Feedback=mongoose.model('Feedback');
 /*处理时间*/
 var Moment = require('moment');
 
+var log4js = require("log4js");
+var log4js_config = require("../../config/logconfig.json");
+log4js.configure(log4js_config);
+var logger = log4js.getLogger("collect_ip.log");
 // 首页
 exports.index = function(req, res) {
     console.log('============iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii======', req.ip);
@@ -19,7 +23,8 @@ exports.index = function(req, res) {
 
 // only for test get ip
 exports.getKKK = function(req, res) {
-    console.log('============gggggggggggggggggggggkkkkkkkkkkkkkkkk======', req.ip);
+    logger.info('collect ip:', req.ip);
+    res.json({a:'b'});
 
 };
 // 走进车协

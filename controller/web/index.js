@@ -13,7 +13,14 @@ var Moment = require('moment');
 
 // 首页
 exports.index = function(req, res) {
+    console.log('============iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii======', req.ip);
     res.render('website/index/index');
+};
+
+// only for test get ip
+exports.getKKK = function(req, res) {
+    console.log('============gggggggggggggggggggggkkkkkkkkkkkkkkkk======', req.ip);
+
 };
 // 走进车协
 exports.company_intro = function(req, res) {

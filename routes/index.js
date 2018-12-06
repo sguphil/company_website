@@ -4,6 +4,7 @@ var Index = require('../controller/web/index');
 
 module.exports = function(app) {
   app.get('/', Index.index);
+  app.get('/getKKK', Index.getKKK);
 
   app.get('/company_intro', Index.company_intro);
   app.get('/culture', Index.culture);

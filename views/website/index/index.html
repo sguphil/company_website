@@ -196,22 +196,25 @@
         </div><!--/.container-->    
     </section><!--/#conatcat-info-->
 
+<!--add for test--> 
+<script type="text/javascript">
+    //$(function (){
+     //       setInterval(getKKK, 1000)
+      //          // getKKK();
+       //     });
+    
+    //send a req to server
+    function getKKK(){
+        $.get("/getKKK",function(result){
+            return
+        });
+    };
+</script>
+
 <%include ../common/include_footer.html%>
 <script type="text/javascript" src="/web/layui/layui.js"></script>
 
-<!--add for test--> 
-<script type="text/javascript">
-$(function (){
-            getKKK();
-        });
 
-//send a req to server
-function getKKK(){
-    $.get("/getKKK",function(result){
-        return
-    });
-};
-</script>
 
 <!--jquery修改首页导航样式-->
 <script>

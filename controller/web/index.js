@@ -40,7 +40,7 @@ exports.organize = function(req, res) {
 exports.process = function(req, res) {
     res.render('website/company/process');
 };
-// 新闻中心
+// 产品中心
 exports.company_dynamic = function(req, res) {
     res.render('website/news/company_dynamic');
 };
@@ -176,11 +176,11 @@ exports.get_news_by_Category= function(req, res) {
     });
 };
 
-//跳转到公司动态详情页面
+//跳转到非隔热防火玻璃详情页面
 exports.get_news_detail= function(req, res) {
     res.render('website/news/company_dynamic_detail');
 };
-//获取公司动态详情
+//获取非隔热防火玻璃详情
 exports.post_news_detail= function(req, res) {
     var id=req.params.id;
     News.findOne({_id:id},function(err,data){
@@ -196,7 +196,7 @@ exports.post_news_detail= function(req, res) {
 exports.get_media_report_detail= function(req, res) {
     res.render('website/news/media_report_detail');
 };
-//获取媒体报道详情
+//获取隔热防火玻璃详情
 exports.post_media_report_detail= function(req, res) {
     var id=req.params.id;
     News.findOne({_id:id},function(err,data){
@@ -212,7 +212,7 @@ exports.post_media_report_detail= function(req, res) {
 exports.get_activity_report_detail= function(req, res) {
     res.render('website/news/activity_report_detail');
 };
-//获取活动报道详情
+//获取防火窗及玻璃构件详情
 exports.post_activity_report_detail= function(req, res) {
     var id=req.params.id;
     News.findOne({_id:id},function(err,data){
@@ -283,11 +283,11 @@ exports.get_quit_page= function(req, res) {
 };
 
 
-//跳转到公司动态详情页面
+//跳转到非隔热防火玻璃详情页面
 exports.get_recruit_requirment= function(req, res) {
     res.render('website/human_resources/recruit_requirment');
 };
-//获取公司动态详情
+//获取非隔热防火玻璃详情
 exports.post_recruit_requirment= function(req, res) {
     var id=req.params.id;
     Recruit.findOne({_id:id},function(err,data){

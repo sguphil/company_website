@@ -85,7 +85,7 @@
 
                     var tempStr='<tr id='+mydata[i]._id+'>'+
                                 /*序号分页后也必须得变动,每页十条数据*/
-                            '<td>'+(i+1)+'、<a href="/recruit_requirment/'+mydata[i]._id+'" class="a_color">职位：'+mydata[i].position+'</a><span class="pull-right">'+mydata[i].department+'</span></td>'+
+                            '<td>'+(i+1)+'、<a href="/recruit_requirment/'+mydata[i]._id+'" class="a_color">'+mydata[i].position+'</a><span class="pull-right">'+mydata[i].department+'</span></td>'+
                             '</tr>'
                     tabContent=tabContent+tempStr;
                 }

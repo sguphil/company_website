@@ -75,7 +75,7 @@
             $.post(url,function(result){
                 //获取后台json数据
                 var mydata=result.data;
-                var news_str='<div style="text-align: center"><strong style="font-size: 20px">相关需求</strong><p style="text-align: center">职位：'+mydata.position+mydata.time+'</p></div>'+mydata.requirement;
+                var news_str='<div style="text-align: center"><strong style="font-size: 20px">相关需求</strong><p style="text-align: center">'+mydata.position+mydata.time+'</p></div>'+mydata.requirement;
                 //将拼接好的数据填入#tabContent中
                 $("#tabContent").html(news_str);
             });

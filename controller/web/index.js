@@ -88,8 +88,9 @@ exports.contact_us = function(req, res) {
 
 // 首页获取6条新闻
 exports.get_news= function(req, res) {
-    //获取新闻处理逻辑
-    News.find({category:'0'}).sort('-_id').limit(6).exec(function(err,datas){
+    //获取新闻处理逻辑 10 条
+    // News.find({category:'0'}).sort('-_id').limit(6).exec(function(err,datas){
+        News.find({}).sort('-_id').limit(15).exec(function(err,datas){
         if(err){
             console.log('获取数据失败');
             var data={
@@ -108,8 +109,8 @@ exports.get_news= function(req, res) {
 
 // 首页获取3条招聘
 exports.get_recruits= function(req, res) {
-    //获取招聘处理逻辑
-    Recruit.find({}).sort('-_id').limit(3).exec(function(err,datas){
+    //获取招聘处理逻辑 
+    Recruit.find({}).sort('-_id').limit(5).exec(function(err,datas){
         if(err){
             console.log('获取数据失败');
             var data={
@@ -126,10 +127,10 @@ exports.get_recruits= function(req, res) {
     });
 };
 
-// 首页获取2条离职公告
+// 首页获取2条公示信息
 exports.get_quits= function(req, res) {
     //获取招聘处理逻辑
-    Quit.find({}).sort('-_id').limit(2).exec(function(err,datas){
+    Quit.find({}).sort('-_id').limit(5).exec(function(err,datas){
         if(err){
             console.log('获取数据失败');
             var data={

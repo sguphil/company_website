@@ -179,7 +179,7 @@ exports.del_recruit= function(req, res) {
 
 };
 
-// 添加离职公示
+// 添加公示信息
 exports.add_quit= function(req, res) {
     var name=req.body.name;
     var time=req.body.time;
@@ -200,7 +200,7 @@ exports.add_quit= function(req, res) {
         }
     });
 };
-// 分页获取离职公示
+// 分页获取公示信息
 exports.get_quits = function(req, res) {
     var curr=req.body.curr;
     //每页大小为10
@@ -397,7 +397,7 @@ exports.add_admin = function(req, res) {
         });
     }
 };
-// 分页获取离职公示
+// 分页获取公示信息
 exports.get_users = function(req, res) {
     var curr=req.body.curr;
     //每页大小为10
@@ -442,7 +442,7 @@ exports.user_del= function(req, res) {
     }
 };
 
-// 分页获取离职公示
+// 分页获取公示信息
 exports.get_feedbacks = function(req, res) {
     var curr=req.body.curr;
     //每页大小为10

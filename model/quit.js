@@ -1,5 +1,5 @@
 /**
- * 离职公示
+ * 公示信息  --公告栏
  */
 var mongoose=require('mongoose');
 

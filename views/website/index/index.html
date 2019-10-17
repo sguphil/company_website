@@ -277,7 +277,7 @@
                 for(var i=0;i<mydata.length;i++){
                     var tempStr='<tr id='+mydata[i]._id+'>'+
                                 /*序号分页后也必须得变动,每页十条数据*/
-                            '<td>'+(i+1)+'、职位：'+mydata[i].position+'<span class="pull-right">'+mydata[i].department+'</span></td>'+
+                            '<td>'+(i+1)+'、'+mydata[i].position+'<span class="pull-right">'+mydata[i].department+'</span></td>'+
                             '</tr>'
                     tabContent=tabContent+tempStr;
                 }
@@ -286,7 +286,7 @@
             });
         };
 
-        //从后台获取数据函数，获取离职公示信息
+        //从后台获取数据函数，获取公示信息信息
         function getQuits(){
             $.get("web/get_quits",function(result){
                 //拼接html内容

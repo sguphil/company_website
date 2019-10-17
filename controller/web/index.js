@@ -66,7 +66,7 @@ exports.partner = function(req, res) {
     res.render('website/partner/partner');
 };
 
-// 人力资源
+// 资讯中心
 exports.recruit = function(req, res) {
     res.render('website/human_resources/recruit');
 };
@@ -225,7 +225,7 @@ exports.post_activity_report_detail= function(req, res) {
     });
 };
 
-//人力资源
+//资讯中心
 // 分页获取招聘信息
 exports.get_recruits_page= function(req, res) {
     //获取新闻处理逻辑

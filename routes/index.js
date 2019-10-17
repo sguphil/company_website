@@ -11,9 +11,11 @@ module.exports = function(app) {
   app.get('/organize', Index.organize);
   app.get('/process', Index.process);
 
-  app.get('/company_dynamic', Index.company_dynamic);
-  app.get('/media_report', Index.media_report);
-  app.get('/activity_report', Index.activity_report);
+  app.get('/company_dynamic', Index.company_dynamic); // 非隔热防火玻璃
+  app.get('/media_report', Index.media_report); // 隔热防火玻璃
+  app.get('/activity_report', Index.activity_report); // 非隔热防火窗
+  app.get('/antifirewindow', Index.antifirewindow); // 隔热防火窗
+  app.get('/glassCom', Index.glassCom); // 玻璃构件
 
   app.get('/services1', Index.services1);
   app.get('/services2', Index.services2);

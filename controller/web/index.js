@@ -50,6 +50,12 @@ exports.media_report = function(req, res) {
 exports.activity_report = function(req, res) {
     res.render('website/news/activity_report');
 };
+exports.antifirewindow = function(req, res) {
+    res.render('website/news/antifirewindow');
+};
+exports.glassCom = function(req, res) {
+    res.render('website/news/glassCom');
+};
 // 服务中心
 exports.services1 = function(req, res) {
     res.render('website/services/services1');
@@ -213,8 +219,40 @@ exports.post_media_report_detail= function(req, res) {
 exports.get_activity_report_detail= function(req, res) {
     res.render('website/news/activity_report_detail');
 };
-//获取防火窗及玻璃构件详情
+//获取非隔热防火窗
 exports.post_activity_report_detail= function(req, res) {
+    var id=req.params.id;
+    News.findOne({_id:id},function(err,data){
+        if(err){
+            res.json({"status":"failed"});
+        }else{
+            res.json({"status":"success","data":data});
+        }
+    });
+};
+
+//跳转活动报道详情页面 隔热防火窗
+exports.get_antifirewindow_detail= function(req, res) {
+    res.render('website/news/antifirewindow_detail');
+};
+//隔热防火窗
+exports.post_antifirewindow_detail= function(req, res) {
+    var id=req.params.id;
+    News.findOne({_id:id},function(err,data){
+        if(err){
+            res.json({"status":"failed"});
+        }else{
+            res.json({"status":"success","data":data});
+        }
+    });
+};
+
+//跳转活动报道详情页面
+exports.get_glassCom_detail= function(req, res) {
+    res.render('website/news/glassCom_detail');
+};
+//玻璃构件
+exports.post_glassCom_detail= function(req, res) {
     var id=req.params.id;
     News.findOne({_id:id},function(err,data){
         if(err){

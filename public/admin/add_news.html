@@ -43,7 +43,9 @@
 				<div class="layui-input-block">
 					<input type="radio" name="category" value="0" title="非隔热防火玻璃" checked="">
 					<input type="radio" name="category" value="1" title="隔热防火玻璃">
-					<input type="radio" name="category" value="2" title="防火窗及玻璃构件">
+					<input type="radio" name="category" value="2" title="非隔热防火窗">
+					<input type="radio" name="category" value="3" title="隔热防火窗">
+					<input type="radio" name="category" value="4" title="玻璃构件">
 				</div>
 			</div>
 
@@ -101,7 +103,7 @@
 				/*alert("title"+title+"time"+time+"from"+from+"from"+imgurl+"content"+content);*/
 				$.post("/admin/add_news",{title:title,time:time,from:from,category:category,content:content},function(result){
 					if(result.status==="success"){
-						layer.alert('添加成功,请在新闻列表查看。', {icon: 1});
+						layer.alert('添加成功,请在产品列表查看。', {icon: 1});
 					}else{
 						layer.alert('添加失败', {icon: 2});
 					}

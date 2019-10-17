@@ -15,7 +15,6 @@
 
                         <table class="table table-hover table-bordered" style="margin-right: 50px;margin-left: 10px;text-align:center">
                             <%include include_menu.html%>
-
                         </table>
 
 
@@ -24,17 +23,23 @@
                     <div class="col-md-9 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="100ms">
 
                         <div class="left wow fadeInDown">
-                            <span style="font-size: large;">非隔热防火窗</span>
+                            <span style="font-size: large;">隔热防火窗</span>
                         </div>
 
 
                         <h3 class="ab_right_title font_size_12" >
-                        <span >您的位置：<a href="" class="a_little_tip">首页</a> > <a href="/activity_report"class="a_little_tip">非隔热防火窗</a>
+                        <span >您的位置：<a href="" class="a_little_tip">首页</a> > <a href="/antifirewindow"class="a_little_tip">隔热防火窗</a>
                         </span>
                         </h3>
 
-                        <div id="tabContent">
 
+                        <table class="table table-hover"  id="tabContent">
+
+                        </table>
+
+                        <div class="admin-table-page">
+                            <div id="page" class="page">
+                            </div>
                         </div>
 
 
@@ -45,9 +50,11 @@
         </div><!--/.container-->
     </section><!--/#feature-->
 
+
+
 <%include ../common/include_footer.html%>
 <!--jquery修改首页导航样式-->
-<script type="text/javascript" src="/web/layui/layui.js"></script>
+<script type="text/javascript" src="web/layui/layui.js"></script>
 <!--jquery修改首页导航样式-->
 <script>
     //一般直接写在一个js文件中
@@ -60,19 +67,44 @@
         $(function (){
             $("#news").addClass("active");
             //第一个参数：多少页，第二个参数，类型，//0 非隔热防火玻璃//1 隔热防火玻璃//2 非隔热防火窗//3 隔热防火窗//4 玻璃构件
-            var url=location.href;
-            getData(url);
+            getData(1,3);
         });
 
         //从后台获取数据函数，获取页数curr的数据
-        function getData(url){
-            $.post(url,function(result){
+        function getData(curr,category){
+            $.post("/web/get_news_by_Category",{curr:curr,category:category},function(result){
+                //拼接html内容
+                var tabContent="";
                 //获取后台json数据
                 var mydata=result.data;
-                var news_str='<div style="text-align: center"><strong style="font-size: 20px">'+mydata.title+'</strong><p style="text-align: center">来源：'+mydata.from+mydata.time+'</p></div>'+mydata.content;
+
+                for(var i=0;i<mydata.length;i++){
+
+                    var tempStr='<tr id='+mydata[i]._id+'>'+
+                                /*序号分页后也必须得变动,每页十条数据*/
+                            '<td>'+(i+(curr-1)*10+1)+'、 <a href="/antifirewindow_detail/'+mydata[i]._id+'" style="color: #4e4e4e">'+mydata[i].title+'</a><span class="pull-right">'+mydata[i].time+'</span></td>'+
+                            '</tr>'
+                    tabContent=tabContent+tempStr;
+                }
                 //将拼接好的数据填入#tabContent中
-                $("#tabContent").html(news_str);
+                $("#tabContent").html(tabContent);
+                //显示分页
+                laypage({
+                    cont: 'page', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+                    pages: result.pages, //通过后台拿到的总页数
+                    curr: curr || 1, //当前页
+                    skin: '#c52d2f',
+                    jump: function(obj, first){ //触发分页后的回调
+                        if(!first){ //点击跳页触发函数自身，并传递当前页：obj.curr
+                            getData(obj.curr,0);
+                        }
+                    }
+                });
             });
         };
+
+
     });
+
+
 </script>

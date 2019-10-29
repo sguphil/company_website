@@ -16,6 +16,8 @@ module.exports = function(app) {
   app.get('/activity_report', Index.activity_report); // 非隔热防火窗
   app.get('/antifirewindow', Index.antifirewindow); // 隔热防火窗
   app.get('/glassCom', Index.glassCom); // 玻璃构件
+  app.get('/structGlass', Index.structGlass); // 建筑玻璃
+  app.get('/specialGlass', Index.specialGlass); // 特种玻璃
 
   app.get('/services1', Index.services1);
   app.get('/services2', Index.services2);

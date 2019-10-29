@@ -56,6 +56,12 @@ exports.antifirewindow = function(req, res) {
 exports.glassCom = function(req, res) {
     res.render('website/news/glassCom');
 };
+exports.structGlass = function(req, res) {
+    res.render('website/news/structGlass');
+};
+exports.specialGlass = function(req, res) {
+    res.render('website/news/specialGlass');
+};
 // 服务中心
 exports.services1 = function(req, res) {
     res.render('website/services/services1');
@@ -263,6 +269,38 @@ exports.post_glassCom_detail= function(req, res) {
     });
 };
 
+//跳转活动报道详情页面 建筑玻璃
+exports.get_structGlass_detail= function(req, res) {
+    res.render('website/news/structGlass_detail');
+};
+//建筑玻璃
+exports.post_structGlass_detail= function(req, res) {
+    var id=req.params.id;
+    News.findOne({_id:id},function(err,data){
+        if(err){
+            res.json({"status":"failed"});
+        }else{
+            res.json({"status":"success","data":data});
+        }
+    });
+};
+
+
+//跳转活动报道详情页面 特种玻璃
+exports.get_specialGlass_detail= function(req, res) {
+    res.render('website/news/specialGlass_detail');
+};
+//特种玻璃
+exports.post_specialGlass_detail= function(req, res) {
+    var id=req.params.id;
+    News.findOne({_id:id},function(err,data){
+        if(err){
+            res.json({"status":"failed"});
+        }else{
+            res.json({"status":"success","data":data});
+        }
+    });
+};
 //资讯中心
 // 分页获取招聘信息
 exports.get_recruits_page= function(req, res) {

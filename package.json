@@ -19,6 +19,6 @@
     "serve-favicon": "~2.3.0",
     "svg-captcha": "~1.2.1",
     "ueditor": "1.2.0",
-    "log4js": "1.0.0"
+    "log4js": "6.4.0"
   }
 }
